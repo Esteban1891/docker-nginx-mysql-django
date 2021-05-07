@@ -21,7 +21,7 @@ services:
       - static:/code/static
       - .:/code
     depends_on:
-      - db_mysql
+      - mysql
     
   nginx:
     image: nginx:1.13
@@ -35,5 +35,5 @@ services:
 
 volumes:
   .:
-  mysql_data:
+  database:
   static:
