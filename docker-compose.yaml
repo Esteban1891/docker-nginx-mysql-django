@@ -1,15 +1,19 @@
 version: "3"
 
 services:
-  db_mysql:
-    image: "mysql:8.0.23"
+  mysql:
+    image: mysql
     volumes:
-      - ./mysql_data:/var/lib/mysql/data
+        - ./database:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "sisben1984"
+      MYSQL_USER: "sisben"
+      MYSQL_PASSWORD: "sisben1984"
+      MYSQL_DATABASE: "oficina_virtual_db"
   
   backend:
     build: .
