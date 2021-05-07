@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  db_mysql:
+    image: "mysql:8.0.23"
+    volumes:
+      - ./mysql_data:/var/lib/mysql/data
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "sisben1984"
+  
+  backend:
+    build: .
+    volumes:
+      - static:/code/static
+      - .:/code
+    depends_on:
+      - db_mysql
+    
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static:/code/static
+    depends_on:
+      - backend
+
+volumes:
+  .:
+  mysql_data:
+  static:
