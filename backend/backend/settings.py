@@ -76,10 +76,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'oficina_virtual_db',
-        'USER': 'oficina_virtual_db',
-        'HOST': 'db_mysql',
-        'PORT': 5432,
+        'NAME': 'db',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': 'mysql',
+        'PORT': '3306'
     }
 } # Connected database I have started with docker
 
